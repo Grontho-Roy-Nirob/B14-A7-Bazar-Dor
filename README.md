@@ -4,7 +4,7 @@
 
 ## 🌐 Project Links
 
-- **Live Website:** [Bazar-Dor](https://your-project.vercel.app)
+- **Live Website:** [Bazar-Dor](https://b14-a7-bazar-dor-eosin.vercel.app/)
 - **GitHub Repository:** [B14-A7-Bazar-Dor](https://github.com/Grontho-Roy-Nirob/B14-A7-Bazar-Dor)
 
 ## ✨ Features
