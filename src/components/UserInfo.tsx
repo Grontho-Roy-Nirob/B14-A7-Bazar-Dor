@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { LogOut, UserRound, ChevronDown } from "lucide-react";
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
+
 export default function UserInfo() {
   const { data: session, isPending } = authClient.useSession();
   const [busy, setBusy] = useState(false);
