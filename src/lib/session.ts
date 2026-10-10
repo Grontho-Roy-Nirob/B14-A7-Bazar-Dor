@@ -1,9 +1,15 @@
-import "server-only";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { getAuth } from "@/lib/auth";
+import { auth } from "@/lib/auth";
+
 export async function requireSession() {
-  const session = await getAuth().api.getSession({ headers: await headers() });
-  if (!session) redirect("/signin?reason=protected");
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  if (!session) {
+    redirect("/signin?reason=protected");
+  }
+
   return session;
 }

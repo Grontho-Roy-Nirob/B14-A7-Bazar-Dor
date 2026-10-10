@@ -33,6 +33,10 @@ export function unitName(unit: string) {
 
 export function banglaDate() {
   return new Date().toLocaleDateString("bn-BD", {
+    weekday: "long",
+    day: "numeric",
+    month: "numeric",
+    year: "numeric",
     timeZone: "Asia/Dhaka",
   });
 }

@@ -1,4 +1,6 @@
 "use client";
 import { createAuthClient } from "better-auth/react";
-// Same-origin requests work locally and on Vercel, with no public secret env vars.
-export const authClient = createAuthClient();
+
+export const authClient = createAuthClient({
+  baseURL: process.env.NEXT_PUBLIC_BETTER_AUTH_URL,
+});

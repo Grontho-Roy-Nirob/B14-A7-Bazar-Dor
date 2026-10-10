@@ -9,6 +9,7 @@ import "@fontsource/noto-sans-bengali/400.css";
 import "@fontsource/noto-sans-bengali/600.css";
 import "@fontsource/noto-sans-bengali/700.css";
 import "./globals.css";
+
 export const metadata: Metadata = {
   title: { default: "বাজার দর | আজকের বাজারের দাম", template: "%s | বাজার দর" },
   description:
@@ -20,14 +21,10 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // Shell stays usable if the category endpoint is temporarily unavailable.
   const categories = await getCategories().catch(() => []);
   return (
     <html lang="bn">
       <body>
-        <a className="skip-link" href="#main-content">
-          মূল বিষয়ে যান
-        </a>
         <Header categories={categories} />
         <Suspense fallback={<div className="skeleton h-9" />}>
           <PriceTicker />

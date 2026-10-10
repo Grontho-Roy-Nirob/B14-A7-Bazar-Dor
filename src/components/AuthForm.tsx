@@ -18,6 +18,7 @@ export default function AuthForm({
   const router = useRouter();
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState("");
+
   useEffect(() => {
     if (protectedRedirect)
       toast.error("বিস্তারিত দেখতে প্রথমে সাইন ইন করুন।", {
@@ -28,39 +29,65 @@ export default function AuthForm({
         id: "oauth-error",
       });
   }, [protectedRedirect, oauthError]);
+
   function fail(text: string) {
     setMessage(text);
     toast.error(text);
   }
+
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const form = event.currentTarget;
-    const data = new FormData(form);
-    const name = String(data.get("name") || "").trim();
-    const email = String(data.get("email") || "").trim();
-    const password = String(data.get("password") || "");
+
+    const formData = new FormData(event.currentTarget);
+    const user = Object.fromEntries(formData.entries()) as {
+      name?: string;
+      email: string;
+      password: string;
+      confirmPassword?: string;
+    };
+
+    const name = user.name?.trim() || "";
+    const email = user.email.trim();
+    const password = user.password;
+
     setMessage("");
+
     if (signup && !name) return fail("আপনার নাম লিখুন।");
+
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
       return fail("সঠিক ইমেইল লিখুন।");
+
     if (password.length < 8)
       return fail("পাসওয়ার্ড কমপক্ষে ৮ অক্ষরের হতে হবে।");
-    if (signup && password !== String(data.get("confirmPassword")))
+
+    if (signup && password !== user.confirmPassword)
       return fail("পাসওয়ার্ড দুটি মিলছে না।");
+
     setBusy(true);
+
     try {
       const { error } = signup
-        ? await authClient.signUp.email({ name, email, password })
-        : await authClient.signIn.email({ email, password });
+        ? await authClient.signUp.email({
+            name,
+            email,
+            password,
+          })
+        : await authClient.signIn.email({
+            email,
+            password,
+          });
+
       if (error) {
         fail(error.message || "আবার চেষ্টা করুন।");
         return;
       }
+
       toast.success(
         signup
           ? "অ্যাকাউন্ট তৈরি হয়েছে। এখন সাইন ইন করুন।"
           : "সফলভাবে সাইন ইন হয়েছে।",
       );
+
       router.push(signup ? "/signin" : "/");
       router.refresh();
     } catch {
@@ -69,6 +96,7 @@ export default function AuthForm({
       setBusy(false);
     }
   }
+
   async function social(provider: "google" | "github") {
     setBusy(true);
     setMessage("");
@@ -85,6 +113,7 @@ export default function AuthForm({
       setBusy(false);
     }
   }
+
   return (
     <section className="auth-section">
       <h1 className="text-2xl font-bold">

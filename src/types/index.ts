@@ -4,12 +4,14 @@ export interface Category {
   nameBn: string;
   icon: string;
 }
+
 export interface Market {
   market: string;
   division: string;
   min: number;
   max: number;
 }
+
 export interface Product {
   id: number;
   slug: string;
