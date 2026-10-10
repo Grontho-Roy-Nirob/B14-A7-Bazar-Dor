@@ -9,17 +9,17 @@
 
 ## ✨ Features
 
-- 📊 View product prices and price changes.
-- 📈 Explore products with the highest price increases and decreases.
-- 🛍️ View detailed product information and market-wise prices.
-- 📂 Browse products by category.
-- ↕️ Sort products by price.
-- 🔐 Sign up and sign in using email/password, Google, or GitHub.
-- 👤 View and update profile information.
-- 🔒 Protect pages that require authentication.
-- 🔔 Display toast notifications and loading skeletons.
-- 📱 Responsive design for mobile, tablet, and desktop.
-- 🚫 Custom 404 page for unavailable routes.
+-  View product prices and price changes.
+-  Explore products with the highest price increases and decreases.
+-  View detailed product information and market-wise prices.
+-  Browse products by category.
+-  Sort products by price.
+-  Sign up and sign in using email/password, Google, or GitHub.
+-  View and update profile information.
+-  Protect pages that require authentication.
+-  Display toast notifications and loading skeletons.
+-  Responsive design for mobile, tablet, and desktop.
+-  Custom 404 page for unavailable routes.
 
 ## 🛠️ Technologies Used
 
