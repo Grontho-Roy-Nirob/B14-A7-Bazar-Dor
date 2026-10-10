@@ -11,6 +11,7 @@ export const auth = betterAuth({
   },
 
   socialProviders: {
+    // Google OAuth configuration for authentication
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
