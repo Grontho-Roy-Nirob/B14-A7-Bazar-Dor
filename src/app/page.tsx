@@ -58,7 +58,7 @@ export default async function Home({
       </section>
       <section id="সব-পণ্য">
         <h2 className="section-title mb-1">সব পণ্য</h2>
-        <p className="muted text-sm mb-4">সব পণ্যের আজকের দাম ও পরিবর্তন</p>
+        <p className="muted text-sm mb-4">মোট ৩৩টি পণ্য দেখানো হচ্ছে।</p>
         <ProductGrid products={products} />
       </section>
     </div>
