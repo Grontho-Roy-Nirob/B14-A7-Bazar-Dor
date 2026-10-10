@@ -5,7 +5,7 @@ export default function ChangeBadge({ change }: { change: Product["change"] }) {
   return (
     <span className={`change-badge ${direction}`}>
       {direction === "up" ? "▲" : direction === "down" ? "▼" : "—"}{" "}
-      {bn(Math.abs(change.pct), 1)}%
+      {bn(Math.abs(change.pct))}%
     </span>
   );
 }

@@ -79,7 +79,7 @@ export default async function ProductPage({
               <p className="muted text-xs mb-2">{item.label}</p>
               <p className={item.color}>
                 <strong className="text-xl">
-                  {bn(item.value, Number.isInteger(item.value) ? 0 : 2)}
+                  {bn(item.value)}
                 </strong>{" "}
                 টাকা
               </p>
@@ -109,10 +109,7 @@ export default async function ProductPage({
                   <td>{bn(market.min)} টাকা</td>
                   <td>{bn(market.max)} টাকা</td>
                   <td>
-                    {bn(
-                      (market.min + market.max) / 2,
-                      Number.isInteger((market.min + market.max) / 2) ? 0 : 2,
-                    )}{" "}
+                  {bn((market.min + market.max) / 2)}{" "}
                     টাকা
                   </td>
                 </tr>
