@@ -21,7 +21,7 @@ export default async function Home({
   return (
     <div className="space-y-8">
       <SocialSuccess show={query.auth === "social-success"} />
-      <section className="hero panel">
+      <section className="panel grid grid-cols-1 items-center gap-3 p-4 sm:grid-cols-[1fr_240px] sm:gap-8 sm:p-8">
         <div>
           <span className="eyebrow">{banglaDate()}</span>
           <h1 className="text-3xl sm:text-4xl font-bold mt-4 leading-snug">
@@ -40,7 +40,7 @@ export default async function Home({
           alt="তাজা ফল ও সবজির ঝুড়ি"
           width={260}
           height={230}
-          className="hero-image"
+          className="mx-auto h-[140px] w-full max-w-[220px] object-contain sm:h-[200px] sm:max-w-none"
           priority
         />
       </section>
