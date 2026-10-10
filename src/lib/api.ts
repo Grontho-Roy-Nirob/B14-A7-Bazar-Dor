@@ -3,6 +3,7 @@ import type { Category, Product } from "@/types";
 
 const BASE_URL = "https://api.api-store.workers.dev/api/bazardor";
 
+// Sends an API request and returns the response data
 async function request<T>(path: string): Promise<T | null> {
   const response = await fetch(`${BASE_URL}${path}`, {
     next: { revalidate: 60 },
@@ -13,6 +14,7 @@ async function request<T>(path: string): Promise<T | null> {
   return response.json() as Promise<T>;
 }
 
+// Fetches all products and caches the result during the current server render
 export const getProducts = cache(async (): Promise<Product[]> => {
   const products = await request<Product[]>("/products");
   if (!Array.isArray(products)) 
@@ -20,6 +22,7 @@ export const getProducts = cache(async (): Promise<Product[]> => {
   return products;
 });
 
+// Fetches all product categorie
 export const getCategories = cache(async (): Promise<Category[]> => {
   const categories = await request<Category[]>("/categories");
   if (!Array.isArray(categories)) 
@@ -27,6 +30,7 @@ export const getCategories = cache(async (): Promise<Category[]> => {
   return categories;
 });
 
+// Fetches a single category using its slug
 export const getCategory = cache(async (slug: string) => {
   const category = await request<Category>(
     `/categories/${encodeURIComponent(slug)}`,
@@ -34,6 +38,7 @@ export const getCategory = cache(async (slug: string) => {
   return category?.id ? category : null;
 });
 
+// Fetches products belonging to a specific category
 export async function getCategoryProducts(slug: string): Promise<Product[]> {
   const products = await request<Product[]>(
     `/products?category=${encodeURIComponent(slug)}`,
@@ -44,6 +49,7 @@ export async function getCategoryProducts(slug: string): Promise<Product[]> {
   return products;
 }
 
+// Fetches a single product using its slug
 export async function getProductBySlug(slug: string) {
   const products = await getProducts();
   const match = products.find((product) => product.slug === slug);
